@@ -19,7 +19,7 @@
       "package": "com.trimgo.app",
       "versionCode": 5,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true
