@@ -6,15 +6,22 @@ import {
   Platform, 
   ActivityIndicator, 
   View,
-  Text,
-  SafeAreaView
+  Text
 } from 'react-native';
 import { WebView } from 'react-native-webview';
+import * as Location from 'expo-location';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   const WEBSITE_URL = 'https://www.trimgo.co.in';
   const webViewRef = useRef(null);
   const [canGoBack, setCanGoBack] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      await Location.requestForegroundPermissionsAsync();
+    })();
+  }, []);
 
   // Hardware Back Button Handling
   useEffect(() => {
@@ -40,25 +47,28 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Status Bar Black */}
-      <StatusBar barStyle="light-content" backgroundColor="#000000" />
-      
-      <WebView
-        ref={webViewRef}
-        source={{ uri: WEBSITE_URL }}
-        style={{ flex: 1, backgroundColor: '#000000' }}
-        forceDarkOn={true} 
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        pullToRefreshEnabled={true} 
-        startInLoadingState={true}
-        renderLoading={LoadingIndicatorView}
-        onNavigationStateChange={(navState) => {
-          setCanGoBack(navState.canGoBack);
-        }}
-      />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        {/* Status Bar Black */}
+        <StatusBar barStyle="light-content" backgroundColor="#000000" />
+        
+        <WebView
+          ref={webViewRef}
+          source={{ uri: WEBSITE_URL }}
+          style={{ flex: 1, backgroundColor: '#000000' }}
+          forceDarkOn={true} 
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+          pullToRefreshEnabled={true} 
+          startInLoadingState={true}
+          renderLoading={LoadingIndicatorView}
+          geolocationEnabled={true}
+          onNavigationStateChange={(navState) => {
+            setCanGoBack(navState.canGoBack);
+          }}
+        />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

@@ -2,7 +2,7 @@
   "expo": {
     "name": "TrimGo",
     "slug": "trimgo-app",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -13,16 +13,23 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.trimgo.app"
+      "bundleIdentifier": "com.trimgo.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "TrimGo needs your location to show live tracking."
+      }
     },
     "android": {
       "package": "com.trimgo.app",
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#000000"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
