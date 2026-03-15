@@ -3,7 +3,6 @@ import {
   StyleSheet, 
   StatusBar, 
   BackHandler, 
-  Platform, 
   ActivityIndicator, 
   View,
   Text
@@ -49,7 +48,6 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        {/* Status Bar Black */}
         <StatusBar barStyle="light-content" backgroundColor="#000000" />
         
         <WebView
@@ -75,8 +73,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    backgroundColor: '#000000',
+    backgroundColor: '#000000'
   },
   loadingContainer: {
     position: 'absolute',
